@@ -1,6 +1,7 @@
 package com.example.gestion.personas.controller;
 
 import com.example.gestion.personas.entity.Persona;
+import com.example.gestion.personas.exception.ContactoNotFound;
 import com.example.gestion.personas.exception.ExceptionFechaNacimientoInvalid;
 import com.example.gestion.personas.exception.ExceptionPersonaNotFound;
 import com.example.gestion.personas.service.PersonaService;
@@ -32,7 +33,7 @@ public class PersonaController {
     }
 
     @PostMapping
-    public Persona crearPersona(@RequestBody Persona persona) throws ExceptionFechaNacimientoInvalid {
+    public Persona crearPersona(@RequestBody Persona persona) throws ExceptionFechaNacimientoInvalid, ContactoNotFound {
         return personaService.crearPersona(persona);
     }
 

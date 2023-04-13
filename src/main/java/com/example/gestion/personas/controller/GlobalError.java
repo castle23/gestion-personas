@@ -1,5 +1,6 @@
 package com.example.gestion.personas.controller;
 
+import com.example.gestion.personas.exception.ContactoNotFound;
 import com.example.gestion.personas.exception.ExceptionFechaNacimientoInvalid;
 import com.example.gestion.personas.exception.ExceptionPersonaNotFound;
 import lombok.extern.slf4j.Slf4j;
@@ -21,5 +22,10 @@ public class GlobalError {
     public ResponseEntity<ErrorGeneral> exceptionPersonaNotFound(){
         ErrorGeneral error = new ErrorGeneral(MensajeError.PERSONA_NOT_FOUND);
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(ContactoNotFound.class)
+    public ResponseEntity<ErrorGeneral> exceptionContactoNotFound(){
+        ErrorGeneral error = new ErrorGeneral(MensajeError.CONTACTO_NOT_FOUND);
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 }

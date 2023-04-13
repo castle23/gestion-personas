@@ -1,6 +1,7 @@
 package com.example.gestion.personas.service;
 
 import com.example.gestion.personas.entity.Persona;
+import com.example.gestion.personas.exception.ContactoNotFound;
 import com.example.gestion.personas.exception.ExceptionFechaNacimientoInvalid;
 import com.example.gestion.personas.exception.ExceptionPersonaNotFound;
 import com.example.gestion.personas.repository.PersonaRepository;
@@ -31,10 +32,10 @@ public class PersonaService {
         return optionalPersona.orElseThrow(ExceptionPersonaNotFound::new);
     }
 
-    public Persona crearPersona(Persona persona) throws ExceptionFechaNacimientoInvalid {
-        if (datesUtils.isValidFechaNacimiento(persona.getFechaNacimiento()))
-            return personaRepository.save(persona);
-        else throw new ExceptionFechaNacimientoInvalid();
+    public Persona crearPersona(Persona persona) throws ExceptionFechaNacimientoInvalid, ContactoNotFound {
+        datesUtils.isValidFechaNacimiento(persona.getFechaNacimiento());
+        datesUtils.isValidContacto(persona);
+        return personaRepository.save(persona);
     }
 
     public Persona actualizarPersona(Long id, Persona persona) throws ExceptionPersonaNotFound {
