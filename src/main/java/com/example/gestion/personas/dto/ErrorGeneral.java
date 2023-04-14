@@ -1,9 +1,13 @@
-package com.example.gestion.personas.controller;
+package com.example.gestion.personas.dto;
 
+import com.example.gestion.personas.controller.MensajeError;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Clase para responder los errores de negocio
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
