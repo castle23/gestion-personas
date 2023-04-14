@@ -30,7 +30,7 @@ public class RootController {
      */
     //TODO se podria agregar una cache a la lista ya que no varia mucho, esto aumenta la performance
     @GetMapping("/paises")
-    public ResponseEntity<List<Pais>> listarPersonas() {
+    public ResponseEntity<List<Pais>> listarPaises() {
         List<Pais> paises = paisRepository.findAll();
         return new ResponseEntity<>(paises, HttpStatus.OK);
     }
