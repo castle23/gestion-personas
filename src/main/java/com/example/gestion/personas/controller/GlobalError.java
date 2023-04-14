@@ -1,10 +1,7 @@
 package com.example.gestion.personas.controller;
 
 import com.example.gestion.personas.dto.ErrorGeneral;
-import com.example.gestion.personas.exception.ContactoNotFound;
-import com.example.gestion.personas.exception.DatosPersonaInvalid;
-import com.example.gestion.personas.exception.ExceptionFechaNacimientoInvalid;
-import com.example.gestion.personas.exception.ExceptionPersonaNotFound;
+import com.example.gestion.personas.exception.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,10 +32,19 @@ public class GlobalError {
         ErrorGeneral error = new ErrorGeneral(MensajeError.CONTACTO_NOT_FOUND);
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
-
     @ExceptionHandler(DatosPersonaInvalid.class)
     public ResponseEntity<ErrorGeneral> exceptionDatosPersonaInvalid(DatosPersonaInvalid e){
         ErrorGeneral error = new ErrorGeneral(MensajeError.DATOS_PERSONA_INVALID.name(),MessageFormat.format(MensajeError.DATOS_PERSONA_INVALID.getDescripcion(), e.getMessage()));
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(AncestroInvalid.class)
+    public ResponseEntity<ErrorGeneral> exceptionAncestroInvalid(){
+        ErrorGeneral error = new ErrorGeneral(MensajeError.ANCESTRO_INVALID);
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(IdentificadorInvalido.class)
+    public ResponseEntity<ErrorGeneral> exceptionIdentificadorInvalido(){
+        ErrorGeneral error = new ErrorGeneral(MensajeError.ID_INVALID);
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
     @ExceptionHandler(Exception.class)

@@ -83,4 +83,16 @@ public class PersonaController {
     public void eliminarPersona(@PathVariable Long id) throws ExceptionPersonaNotFound {
         personaService.eliminarPersona(id);
     }
+
+    /**
+     * Asocia un padre a una persona
+     * @param idPadre Identificador del padre
+     * @param idHijo Identificador de la persona
+     * @return Persona actualizada
+     */
+    @PostMapping("/{idPadre}/padre/{idHijo}")
+    public Persona relacionarPadre(@PathVariable Long idPadre, @PathVariable Long idHijo) throws ExceptionPersonaNotFound, AncestroInvalid, IdentificadorInvalido {
+        return personaService.relacionarPadre(idPadre,idHijo);
+    }
+
 }

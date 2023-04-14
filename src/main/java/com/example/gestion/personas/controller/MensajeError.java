@@ -11,11 +11,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public enum MensajeError {
+    INTERNAL_SERVER_ERROR("Error interno de la aplicacion"),
     FECHA_NACIMIENTO_INVALID("Fecha de nacimiento es invalida"),
     PERSONA_NOT_FOUND("Persona no encontrada"),
     CONTACTO_NOT_FOUND("La Persona debe tener al menos un dato de contacto(mail/telf)"),
-    INTERNAL_SERVER_ERROR("Error interno de la aplicacion"),
-    DATOS_PERSONA_INVALID("El {0} es invalido");
+    DATOS_PERSONA_INVALID("El {0} es invalido"),
+    ANCESTRO_INVALID("No se puede asociar el padre ya que esta como ancestro de este"),
+    ID_INVALID("Los identificadores no pueden ser iguales");
 
     @Getter
     private String descripcion;
