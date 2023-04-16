@@ -22,3 +22,6 @@ INSERT INTO pais (id, nombre) VALUES
   (NEXT VALUE FOR  seq_pais, 'Taiwan'),
   (NEXT VALUE FOR  seq_pais, 'Venezuela')
 ;
+INSERT INTO persona(id, nombre, apellido, fecha_nacimiento, mail, numero_documento, telefono, tipo_documento, id_padre, id_pais)
+	VALUES (NEXT VALUE FOR  seq_persona, 'prueba', 'prueba', '1990-01-01', 'mail@mail.com', '11111111', '11111111', 'DNI', null, 1)
+	;

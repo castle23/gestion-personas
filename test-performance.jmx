@@ -73,16 +73,16 @@
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-    &quot;nombre&quot; : &quot;Carlos&quot;,&#xd;
-    &quot;apellido&quot; : &quot;Castillo&quot;,&#xd;
+    &quot;nombre&quot; : &quot;prueba&quot;,&#xd;
+    &quot;apellido&quot; : &quot;prueba&quot;,&#xd;
     &quot;pais&quot; : {&#xd;
         &quot;id&quot;:&quot;11&quot;&#xd;
     },&#xd;
     &quot;tipoDocumento&quot; : &quot;DNI&quot;,&#xd;
-    &quot;numeroDocumento&quot; : &quot;96009221&quot;,&#xd;
-    &quot;telefono&quot; : &quot;1540876113&quot;,&#xd;
+    &quot;numeroDocumento&quot; : &quot;12345678&quot;,&#xd;
+    &quot;telefono&quot; : &quot;0123456789&quot;,&#xd;
     &quot;fechaNacimiento&quot; : &quot;1991/01/22&quot;,&#xd;
-    &quot;mail&quot;:&quot;castlec23@gmail.com&quot;&#xd;
+    &quot;mail&quot;:&quot;mail@gmail.com&quot;&#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
@@ -239,7 +239,7 @@
           </elementProp>
           <elementProp name="idP1" elementType="Argument">
             <stringProp name="Argument.name">idP1</stringProp>
-            <stringProp name="Argument.value">5</stringProp>
+            <stringProp name="Argument.value">1</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
