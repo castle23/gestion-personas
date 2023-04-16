@@ -17,7 +17,8 @@ public enum MensajeError {
     CONTACTO_NOT_FOUND("La Persona debe tener al menos un dato de contacto(mail/telf)"),
     DATOS_PERSONA_INVALID("El {0} es invalido"),
     ANCESTRO_INVALID("No se puede asociar el padre ya que esta como ancestro de este"),
-    ID_INVALID("Los identificadores no pueden ser iguales");
+    ID_INVALID("Los identificadores no pueden ser iguales"),
+    RELACION_INVALID("No existe relacion entre las personas");
 
     @Getter
     private String descripcion;
