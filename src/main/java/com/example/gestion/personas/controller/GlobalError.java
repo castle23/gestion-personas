@@ -47,6 +47,11 @@ public class GlobalError {
         ErrorGeneral error = new ErrorGeneral(MensajeError.ID_INVALID);
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
+    @ExceptionHandler(RelacionInexistente.class)
+    public ResponseEntity<ErrorGeneral> exceptionRelacionInexistente(){
+        ErrorGeneral error = new ErrorGeneral(MensajeError.RELACION_INVALID);
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorGeneral> exceptionGeneral(){
         ErrorGeneral error = new ErrorGeneral(MensajeError.INTERNAL_SERVER_ERROR);

@@ -189,3 +189,61 @@ Así como también puedes ir al IDE de tu preferencias y darle clic derecho al a
 **Errores posibles**:
 -   Código HTTP `404` si no se encuentra una persona con el ID proporcionado.
 -   Código HTTP `500` si ocurre un error interno en el servidor.
+
+### Asignar Padre
+
+**Endpoint**: `/personas/{idPadre}/padre/{idPersona}`
+
+**Método HTTP**: POST
+
+**Respuesta Exitosa**: Retorna la persona con Padre especificado. Ejemplo:
+
+    {
+        "id": 1,
+        "nombre": "prueba",
+        "apellido": "prueba",
+        "idPadre":     {
+		        "id": 2,
+		        "nombre": "prueba",
+		        "apellido": "prueba",
+		        "idPadre": null,
+		        "tipoDocumento": "DNI",
+		        "numeroDocumento": "12345678",
+		        "pais": {
+		            "id": 2,
+		            "nombre": "Brasil"
+		        },
+		        "telefono": "1111111111",
+		        "email": "prueba@gmail.com",
+		        "fechaNacimiento": "1990/01/01"
+		    },
+        "tipoDocumento": "DNI",
+        "numeroDocumento": "12345678",
+        "pais": {
+            "id": 1,
+            "nombre": "Argentina"
+        },
+        "telefono": "1111111111",
+        "email": "prueba@gmail.com",
+        "fechaNacimiento": "1990/01/01"
+    }
+
+**Errores posibles**:
+-   Código HTTP `404` si no se encuentra una persona con el ID proporcionado.
+-   Código HTTP `400` si los datos proporcionados son inválidos.
+-   Código HTTP `500` si ocurre un error interno en el servidor.
+
+### Relacion entre dos pesonas
+
+**Endpoint**: `/personas/relaciones/{id1}/{id2}`
+
+**Método HTTP**: GET
+
+**Respuesta Exitosa**: Retorna la relacion entre las dos personas. Valores posibles:
+
+    HERMANO,PRIMO,TIO
+
+**Errores posibles**:
+-   Código HTTP `404` si no se encuentra una persona con el ID proporcionado.
+-   Código HTTP `400` si los datos proporcionados son inválidos.
+-   Código HTTP `500` si ocurre un error interno en el servidor.
