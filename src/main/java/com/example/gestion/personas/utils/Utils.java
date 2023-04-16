@@ -1,6 +1,7 @@
 package com.example.gestion.personas.utils;
 
 import com.example.gestion.personas.entity.Persona;
+import com.example.gestion.personas.exception.AncestroInvalid;
 import com.example.gestion.personas.exception.ContactoNotFound;
 import com.example.gestion.personas.exception.DatosPersonaInvalid;
 import com.example.gestion.personas.exception.ExceptionFechaNacimientoInvalid;
@@ -68,4 +69,19 @@ public class Utils {
             throw new DatosPersonaInvalid("Pais");
         }
     }
+
+    /**
+     * Valida que el padre no sea ancestro para evitar un ciclo infinito
+     * @param p
+     * @param idPadre
+     * @throws AncestroInvalid
+     */
+    public void isValidPadre(Persona p, Long idPadre) throws AncestroInvalid {
+        if(p.getPadre() != null){
+            if(p.getPadre().getId().equals(idPadre))
+                throw new AncestroInvalid();
+            isValidPadre(p.getPadre(),idPadre);
+        }
+    }
+
 }

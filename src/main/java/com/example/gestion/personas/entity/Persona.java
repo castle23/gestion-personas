@@ -46,7 +46,6 @@ public class Persona {
     /**
      * Padre de las persona
      */
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     @JoinColumn(name = "id_padre")
     private Persona padre;
