@@ -83,7 +83,7 @@
 	</build>
 	<profiles>
 		<profile>
-			<id>cloud-gcp</id>
+			<id>gcp</id>
 			<dependencies>
 				<dependency>
 					<groupId>com.h2database</groupId>

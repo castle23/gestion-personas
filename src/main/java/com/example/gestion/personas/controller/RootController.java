@@ -1,6 +1,6 @@
 package com.example.gestion.personas.controller;
 
-import com.example.gestion.personas.entity.EstadisticasPorPais;
+import com.example.gestion.personas.dto.EstadisticasPorPais;
 import com.example.gestion.personas.entity.Pais;
 import com.example.gestion.personas.repository.PaisRepository;
 import com.example.gestion.personas.service.EstadisticasService;

@@ -1,4 +1,4 @@
-package com.example.gestion.personas.entity;
+package com.example.gestion.personas.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;

@@ -1,6 +1,6 @@
 package com.example.gestion.personas.repository;
 
-import com.example.gestion.personas.entity.EstadisticasPorPais;
+import com.example.gestion.personas.dto.EstadisticasPorPais;
 import com.example.gestion.personas.entity.Pais;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface PaisRepository extends JpaRepository<Pais, Long> {
 
-    @Query("SELECT new com.example.gestion.personas.entity.EstadisticasPorPais(p.pais.nombre, COUNT(p)) FROM Persona p GROUP BY p.pais.nombre")
+    @Query("SELECT new com.example.gestion.personas.dto.EstadisticasPorPais(p.pais.nombre, COUNT(p)) FROM Persona p GROUP BY p.pais.nombre")
     List<EstadisticasPorPais> obtenerEstadisticasPorPais();
 
 }
