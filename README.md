@@ -6,19 +6,19 @@ Realizado con Maven, Java 17 y SpringBoot 3.
 ### Requisitos
 Tener instalados Maven 3.8+, Java 17+ y una BD de su preferencia.
 
-Esta realizada para que se conecte a una BD PostgreSQL por lo que debe reemplazar los datos de conexión en el archivo **'application.properties'**
+Está realizada para que se conecte a una BD PostgreSQL por lo que debe reemplazar los datos de conexión en el archivo **'application.properties'**
 
     spring.datasource.url=jdbc:postgresql://host:puerto/nombre_bd
     spring.datasource.username=usuario_bd
     spring.datasource.password=clave_bd
-Tenga en cuenta que la primera vez que inicia el programa se van a crear las tablas, secuencias en índices en caso de que no existan y/o va actualizar los cambios que tenga respecto al código, esto se debe a la propiedad
+Tenga en cuenta que la primera vez que inicia el programa se van a crear las tablas, secuencias en índices en caso de que no existan y/o va a actualizar los cambios que tenga respecto al código, esto se debe a la propiedad
 
     spring.jpa.hibernate.ddl-auto=update
 
 En caso de que use otra BD que no sea PostgreSQL recuerde cambiar la propertie por el valor que usted vaya a utilizar
 
     spring.jpa.properties.hibernate.dialect=
-Asi como tambien debe reemplazar la libreria de postgres por la de su BD en el archivo **'pom.xml'**
+Asi como también debe reemplazar la libreria de postgres por la de su BD en el archivo **'pom.xml'**
 
     <dependency>  
        <groupId>org.postgresql</groupId>  
@@ -27,11 +27,33 @@ Asi como tambien debe reemplazar la libreria de postgres por la de su BD en el a
 
 Una vez creada la BD puedes ejecutar el script **'inserts_paises.sql'** que se encuentra en el proyecto para cargar los datos de la tabla.
 
-## Iniciar App
+## Iniciar App Local
 Al ser un proyecto Maven solo debes correr el siguiente comando en una terminal en el directorio donde te hayas bajado el proyecto para iniciar la app
 
     mvn spring-boot:run
-Así como también puedes ir al IDE de tu preferencias y darle clic derecho al archivo **'PersonasApplication'** y darle RUN en el menú que despliega.
+Así como también puedes ir al IDE de tú preferencias y darle clic derecho al archivo **'PersonasApplication'** y darle RUN en el menú que despliega.
+
+## Deploy App Google Cloud
+Para desplegar el proyecto debes tener instalado el SDK de Google Cloud, tienes que haber creado un proyecto y habilitar el servicio de google app engine.
+Al proyecto se le agrega el plugin de maven appengine para facilitar el deploy en google cloud.
+
+En el archivo _src\main\appengine\app.yaml_ encontrarás las configuracion de las instancias necesarias para iniciar tu app en google.
+Para realizar el deploy solo necesitas correr el siguiente comando:
+
+    mvn clean package appengine:deploy -Dapp.deploy.projectId=<proyect-id> -Dapp.deploy.version=<version> -P gcp
+
+En el cual debes reemplazar el **<proyect-id>** por el identificador de tu proyecto y **<version>** para identificar la version que vas a realizar el deploy.
+El proyecto también fue configurado con un perfil de "gcp" para configurar las properties de la nube en el archivo "application-gcp.properties".
+Para este proyecto se configuró que use una BD de H2 basada en memoria, pero puedes configurarla para conectarse a la BD de tu preferencia como se indica anteriormente.
+Tenga en cuenta también que se agregó la propiedad
+
+    spring.jpa.defer-datasource-initialization
+
+Por lo que cuando inicie la app se carguen las tablas con los insert que se encuentran en el archivo _**data.sql**_.
+
+## Test Performance
+
+En el archivo _**test-performance.jmx**_ encontrarás una prueba de stress realizada con Apache Jmeter para generar una prueba de fluctuaciones de tráfico de 1 a 500 request por segundo.
 
 ## Servicios REST
 
@@ -246,4 +268,31 @@ Así como también puedes ir al IDE de tu preferencias y darle clic derecho al a
 **Errores posibles**:
 -   Código HTTP `404` si no se encuentra una persona con el ID proporcionado.
 -   Código HTTP `400` si los datos proporcionados son inválidos.
+-   Código HTTP `500` si ocurre un error interno en el servidor.
+
+### Estadisticas por paises
+
+**Endpoint**: `/stats`
+
+**Método HTTP**: GET
+
+**Respuesta Exitosa**: Retorna la lista de paises con los porcentajes de personas. Ejemplo:
+
+    [
+        {
+            "pais": "Andorra",
+            "porcentaje": 20.0
+        },
+        {
+            "pais": "Albania",
+            "porcentaje": 20.0
+        },
+        {
+            "pais": "Argentina",
+            "porcentaje": 60.0
+        }
+    ]
+
+
+**Errores posibles**:
 -   Código HTTP `500` si ocurre un error interno en el servidor.
